@@ -22,8 +22,8 @@ create table tours
 
 create table agentdeals
 (
-	agentid int,
-	custid int,
+	agentid int primary key,
+	custid int ,
 	tourid int,
 	propertyid int,
 	listid int,

@@ -1,0 +1,13 @@
+
+# make sure the sql file is located in the place where it is mentioned in the config file
+# using different config files for different database targets
+# can use the -configFiles property to make use of the specifi config file
+
+# run the below in iterm to make use the specific conf file. 
+
+flyway -configFiles=/Users/gotth005/onedrive/03_Tech Repository/personalGit/realestate_agents_dmart/hgwin10_config.conf migrate
+
+
+
+
+
