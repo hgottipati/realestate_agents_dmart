@@ -76,13 +76,13 @@ create table agentdeals
 )
 
 
-ALTER TABLE agentdeals ADD FOREIGN KEY (agentid )			REFERENCES  agents		(agentid)
-ALTER TABLE agentdeals ADD FOREIGN KEY (custid )			REFERENCES  customers	(custid)
-ALTER TABLE agentdeals ADD FOREIGN KEY (tourid )			REFERENCES  tours		(tourid)
-ALTER TABLE agentdeals ADD FOREIGN KEY (listid )			REFERENCES  listings    (listid)
-ALTER TABLE agentdeals ADD FOREIGN KEY (propertyid )		REFERENCES  properties	(propertyid)
-ALTER TABLE agentdeals ADD FOREIGN KEY (purchaseid )    	REFERENCES  buying		(purchaseid)
-ALTER TABLE agentdeals ADD FOREIGN KEY (saleid )			REFERENCES  selling	  	(saleid)
+ALTER TABLE agentdeals ADD FOREIGN KEY (agentid )		REFERENCES  agents		(agentid)
+ALTER TABLE agentdeals ADD FOREIGN KEY (custid )		REFERENCES  customers	(custid)
+ALTER TABLE agentdeals ADD FOREIGN KEY (tourid )		REFERENCES  tours		(tourid)
+ALTER TABLE agentdeals ADD FOREIGN KEY (listid )		REFERENCES  listings    (listid)
+ALTER TABLE agentdeals ADD FOREIGN KEY (propertyid )	REFERENCES  properties	(propertyid)
+ALTER TABLE agentdeals ADD FOREIGN KEY (purchaseid )    REFERENCES  buying		(purchaseid)
+ALTER TABLE agentdeals ADD FOREIGN KEY (saleid )		REFERENCES  selling	  	(saleid)
 
 
 
