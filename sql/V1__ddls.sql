@@ -62,8 +62,9 @@ create table selling
 IF NOT EXISTS(SELECT * FROM INFORMATION_SCHEMA.TABLES  WHERE TABLE_SCHEMA = 'dbo' AND TABLE_NAME = 'agentdeals')
 create table agentdeals
 (
-	agentid int primary key,
-	custid int ,
+	factid int identity (1,1)
+	agentid int,
+	custid int,
 	tourid int,
 	listid int,
 	propertyid int,
