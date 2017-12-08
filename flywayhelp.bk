@@ -5,9 +5,7 @@
 
 # run the below in iterm to make use the specific conf file. 
 
-flyway -configFiles=/Users/gotth005/onedrive/03_Tech Repository/personalGit/realestate_agents_dmart/hgwin10_config.conf migrate
+flyway -configFiles=/Users/gotth005/onedrive/03_techRepository/personalGit/realestate_agents_dmart/hgwin10_config.conf migrate
 
 
-
-
-
+export FLYWAY_CONFIG_FILES=/Users/gotth005/onedrive/03_techRepository/personalGit/realestate_agents_dmart/hgwin10_config.conf
