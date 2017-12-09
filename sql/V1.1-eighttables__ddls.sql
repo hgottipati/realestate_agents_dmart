@@ -83,5 +83,3 @@ ALTER TABLE fact_agentdeals ADD FOREIGN KEY (propertyid )	REFERENCES  dim_proper
 ALTER TABLE fact_agentdeals ADD FOREIGN KEY (purchaseid )    REFERENCES  dim_buying		(purchaseid)
 ALTER TABLE fact_agentdeals ADD FOREIGN KEY (saleid )		REFERENCES  dim_selling	  	(saleid)
 
--- bootstrap data
-
