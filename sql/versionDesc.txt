@@ -1,3 +1,5 @@
 v1: 8 tables. agents, customers, properties, tours, listings, buying, selling, fact_agentdeals
 
 v2: removed buing and selling tables. moved list price to listing table since it has no significance in the fact table. purchdate and saledt means that it is a deal.
+
+V3: New. Removed assignments table. added assignedagentid in customers table. added type2 for fact_mlsdeals for tracking history information for each mlsno. Added mld_master table with propertyid FK so as to limit the number of times propery details are repeated. 
