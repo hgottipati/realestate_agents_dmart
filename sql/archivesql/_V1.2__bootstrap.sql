@@ -138,10 +138,19 @@ insert into red_test..dim_properties (propertyNo, [style], address, city, postco
 
 -- DBCC CHECKIDENT ('dim_tours', RESEED, 0); 
 /* */
-insert into dim_tours values (getdate()-2)
-insert into dim_tours values (getdate()-2)
-insert into dim_tours values (getdate()-1)
-insert into dim_tours values (getdate())
+insert into tours values (11,2,3,getdate()-2)
+insert into tours values (21,2,3,getdate()-2)
+insert into tours values (31,2,3,getdate()-1)
+insert into tours values (21,2,3,getdate())
+insert into tours values (11,4,5,getdate()-2)
+insert into tours values (21,4,5,getdate()-2)
+insert into tours values (34,4,5,getdate()-1)
+insert into tours values (24,3,4,getdate())
+insert into tours values (14,3,4,getdate()-2)
+insert into tours values (24,3,4,getdate()-2)
+insert into tours values (34,2,4,getdate()-1)
+insert into tours values (24,2,4,getdate())
+
 
 insert into dim_listings (getdate()-10,'250000')
 insert into dim_listings (getdate()-9,'350000')

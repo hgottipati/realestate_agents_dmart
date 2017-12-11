@@ -47,7 +47,7 @@ FROM
 	fact_mlsdeals f
 JOIN 
 	dim_agents a ON a.agentId = f.agentId
-WHERE  f.listDate = 'sold' 
+WHERE  f.status = 'sold' 
 	and dealType = 'sale' 
 		and isCurrentIndicator = 1
 GROUP BY 
@@ -61,7 +61,7 @@ FROM
 	fact_mlsdeals f
 JOIN 
 	dim_agents a ON a.agentId = f.agentId
-WHERE  f.listDate = 'sold' 
+WHERE  f.status = 'sold' 
 		and dealType = 'buy' 
 			and isCurrentIndicator = 1 
 GROUP BY 
