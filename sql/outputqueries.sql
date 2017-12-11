@@ -11,6 +11,7 @@ JOIN
 	dim_agents a ON a.agentid = c.assignedagentid
 WHERE 
 	c.assignedAgentId IS NOT NULL
+		and isCurrentIndicator = 1
 GROUP BY 
 	a.agentFirstName,DATEPART(YEAR,c.customerJoinDate)
 
