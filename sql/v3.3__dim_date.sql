@@ -31,12 +31,15 @@ CREATE TABLE [dbo].[dim_Date](
 
 GO
 SET ANSI_PADDING OFF
+
 BEGIN TRY
  DROP TABLE [dim_Time]
 END TRY
 BEGIN CATCH
  --DO NOTHING
 END CATCH
+
+
 CREATE TABLE [dbo].[dim_Time](
  [ID] [int] IDENTITY(1,1) NOT NULL,
  [Time] [char](8) NOT NULL,
