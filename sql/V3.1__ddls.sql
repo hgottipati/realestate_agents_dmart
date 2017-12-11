@@ -63,19 +63,20 @@ create table fact_mlsdeals
 (
 	mlsDealId int identity (1,1) primary key,
 	listDate datetime not null,
-    status int,
+    status varchar (20),
     mlsId int,
     customerId int,
 	agentId int,
     listedPrice int,
 	closePrice int,
-	dealType int,
+	dealType varchar(20),
 	isCurrentIndicator bit not null,
 	effectiveDate datetime,
 	expirationDate datetime
 	
 )
 
+ALTER TABLE fact_mlsdeals  ADD CONSTRAINT check_sale_type CHECK (dealType IN ('Sale', 'Purchase'));
 ALTER TABLE fact_mlsdeals  ADD FOREIGN KEY (agentID )		REFERENCES  dim_agents		(agentID)
 ALTER TABLE fact_mlsdeals  ADD FOREIGN KEY (customerID )		REFERENCES  dim_customers	(customerID)
 ALTER TABLE fact_mlsdeals  ADD FOREIGN KEY (mlsID )		REFERENCES  MLS_Master	(mlsID)
