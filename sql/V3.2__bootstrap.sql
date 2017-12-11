@@ -311,3 +311,13 @@ insert into MLS_Master values (62, (select abs(cast(cast(newid() as varbinary) a
 insert into MLS_Master values (64, (select abs(cast(cast(newid() as varbinary) as int))/10000))
 insert into MLS_Master values (65, (select abs(cast(cast(newid() as varbinary) as int))/10000))
 
+
+
+-- fact_mlsdeals
+
+insert into fact_mlsdeals (listDate, [status], mlsId, customerId, agentId, listedPrice, closePrice, dealType, isCurrentIndicator, effectiveDate, expirationDate) 
+values (dateadd (MONTH, -8, GETDATE()), 'listed', 1, 1,2,1500000,null,'sale',1,getdate(),null)
+
+
+insert into fact_mlsdeals (listDate, [status], mlsId, customerId, agentId, listedPrice, closePrice, dealType, isCurrentIndicator, effectiveDate, expirationDate) 
+values (dateadd (YEAR, -1, GETDATE()), 'sold', 10,5,5,1600000,1800000,'purchase',1, dateadd(YEAR, -1, GETDATE()),null)
