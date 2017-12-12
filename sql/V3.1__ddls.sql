@@ -13,8 +13,11 @@ create table dim_customers
 	customerFirstname varchar(40) not null,
 	customerLastname varchar(40) not null,
 	customerPhone varchar(50)  null,
-	customerEmailId varchar(60) not null unique,
-	customerJoinDate datetime default getdate()
+	customerEmailId varchar(60) not null,
+	customerJoinDate datetime default getdate(),
+	isCurrentIndicator bit not null,
+	effectiveDate datetime default  getdate(),
+	expirationDate datetime
 )
 
 

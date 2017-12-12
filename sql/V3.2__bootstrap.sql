@@ -18,18 +18,19 @@ insert into red_test..dim_agents values ('agent12','al12')
 
 -- customers
 
-insert into red_test..dim_customers (customerfirstname, customerlastname, assignedAgentId, customeremailid) values ('glenn','kelman',2,'gkelman@rdfn.com')
-insert into red_test..dim_customers (customerfirstname, customerlastname, assignedAgentId, customeremailid) values ('elon','musk',3,'emusk@tsla.com')
-insert into red_test..dim_customers (customerfirstname, customerlastname, assignedAgentId, customeremailid) values ('mark','zuck',4, 'mzuk@fb.com')
-insert into red_test..dim_customers (customerfirstname, customerlastname, assignedAgentId, customeremailid) values ('sundar','pichai',5,'spichai@goog.com')
-insert into red_test..dim_customers (customerfirstname, customerlastname, assignedAgentId, customeremailid) values ('larry','page',5,'lpage@goog.com')
-insert into red_test..dim_customers (customerfirstname, customerlastname, customeremailid) values ('tim','cook','tcook@appl.com')
-insert into red_test..dim_customers (customerfirstname, customerlastname, customeremailid) values ('satya','nadella','snadella@msft.com')
-insert into red_test..dim_customers (customerfirstname, customerlastname, customeremailid) values ('geff','bezos', 'gbezos@amzn.com')
-insert into red_test..dim_customers (customerfirstname, customerlastname, customeremailid) values ('larry','ellison', 'lellison@orcl.com')
-insert into red_test..dim_customers (customerfirstname, customerlastname, customeremailid) values ('bob','iger', 'biger@dis.com')
-insert into red_test..dim_customers (customerfirstname, customerlastname, customeremailid) values ('jack','ma', 'jma@baba.com')
-
+insert into red_test..dim_customers (customerfirstname, customerlastname, assignedAgentId, customeremailid, isCurrentIndicator, effectiveDate ) values ('glenn','kelman',2,'gkelman@rdfn.com',1, dateadd (MONTH, -1, GETDATE()))
+insert into red_test..dim_customers (customerfirstname, customerlastname, assignedAgentId, customeremailid, isCurrentIndicator, effectiveDate ) values ('elon','musk',2,'emusk@tsla.com',1, dateadd (MONTH, -3, GETDATE()))
+insert into red_test..dim_customers (customerfirstname, customerlastname, assignedAgentId, customeremailid, isCurrentIndicator, effectiveDate ) values ('mark','zuck',4, 'mzuk@fb.com',1, dateadd (MONTH, -4, GETDATE()))
+insert into red_test..dim_customers (customerfirstname, customerlastname, assignedAgentId, customeremailid, isCurrentIndicator, effectiveDate ) values ('sundar','pichai',6,'spichai@goog.com',1, dateadd (YEAR, -1, GETDATE()))
+insert into red_test..dim_customers (customerfirstname, customerlastname, assignedAgentId, customeremailid, isCurrentIndicator, effectiveDate ) values ('larry','page',6,'lpage@goog.com',1, dateadd (YEAR, -1, GETDATE()))
+insert into red_test..dim_customers (customerfirstname, customerlastname, assignedAgentId, customeremailid, isCurrentIndicator, effectiveDate ) values ('tim','cook',8,'tcook@appl.com',1, dateadd (MONTH, -5, GETDATE()))
+insert into red_test..dim_customers (customerfirstname, customerlastname, assignedAgentId, customeremailid, isCurrentIndicator, effectiveDate ) values ('satya','nadella',8,'snadella@msft.com',1, dateadd (DAY, -20, GETDATE()))
+insert into red_test..dim_customers (customerfirstname, customerlastname, assignedAgentId, customeremailid, isCurrentIndicator, effectiveDate ) values ('geff','bezos',8, 'gbezos@amzn.com',1, dateadd (MONTH, -1, GETDATE()))
+insert into red_test..dim_customers (customerfirstname, customerlastname, assignedAgentId, customeremailid, isCurrentIndicator, effectiveDate ) values ('larry','ellison',10, 'lellison@orcl.com',1, dateadd (YEAR, -1, GETDATE()))
+insert into red_test..dim_customers (customerfirstname, customerlastname, assignedAgentId, customeremailid, isCurrentIndicator, effectiveDate ) values ('bob','iger', 12,'biger@dis.com',1, dateadd (MONTH, -6, GETDATE()))
+insert into red_test..dim_customers (customerfirstname, customerlastname, assignedAgentId, customeremailid, isCurrentIndicator, effectiveDate ) values ('jack','ma',12,'jma@baba.com',1, dateadd (MONTH, -2, GETDATE()))
+insert into red_test..dim_customers (customerfirstname, customerlastname, assignedAgentId, customeremailid, isCurrentIndicator, effectiveDate, expirationDate ) 
+			values ('jack','ma',9,'jma@baba.com',0, dateadd (MONTH, -4, GETDATE()), dateadd (MONTH, -1, GETDATE()))
 
 --- properties
 
@@ -136,35 +137,8 @@ insert into red_test..dim_properties ([style], address, city, postcode, [state])
 insert into red_test..dim_properties ([style], address, city, postcode, [state])  VALUES ('townhome','321-6360 Morbi Street','Tampa','71238','FL');
 
 
--- tours
-
--- DBCC CHECKIDENT ('dim_tours', RESEED, 0); 
-
-insert into tours values (11,2,3,getdate()-2)
-insert into tours values (21,2,3,getdate()-2)
-insert into tours values (31,2,3,getdate()-1)
-insert into tours values (21,2,3,getdate())
-insert into tours values (11,4,5,getdate()-2)
-insert into tours values (21,4,5,getdate()-2)
-insert into tours values (34,4,5,getdate()-1)
-insert into tours values (24,3,4,getdate())
-insert into tours values (14,3,4,getdate()-2)
-insert into tours values (24,3,4,getdate()-2)
-insert into tours values (34,2,4,getdate()-1)
-insert into tours values (24,2,4,getdate())
-
-
-insert into dim_tours values (getdate()-2)
-insert into dim_tours values (getdate()-2)
-insert into dim_tours values (getdate()-1)
-insert into dim_tours values (getdate())
-
-insert into dim_listings (getdate()-10,'250000')
-insert into dim_listings (getdate()-9,'350000')
-insert into dim_listings (getdate()-8,'450000')
-
-
 -- MLS_Master
+
 insert into MLS_Master values (30, (select abs(cast(cast(newid() as varbinary) as int))/10000))
 insert into MLS_Master values (31, (select abs(cast(cast(newid() as varbinary) as int))/10000))
 insert into MLS_Master values (32, (select abs(cast(cast(newid() as varbinary) as int))/10000))
@@ -310,6 +284,26 @@ insert into MLS_Master values (62, (select abs(cast(cast(newid() as varbinary) a
 insert into MLS_Master values (62, (select abs(cast(cast(newid() as varbinary) as int))/10000))
 insert into MLS_Master values (64, (select abs(cast(cast(newid() as varbinary) as int))/10000))
 insert into MLS_Master values (65, (select abs(cast(cast(newid() as varbinary) as int))/10000))
+
+
+-- tours
+
+-- DBCC CHECKIDENT ('dim_tours', RESEED, 0); 
+
+insert into tours values (11,2,3,getdate()-2)
+insert into tours values (21,2,3,getdate()-2)
+insert into tours values (31,2,3,getdate()-1)
+insert into tours values (21,2,3,getdate())
+insert into tours values (11,4,5,getdate()-2)
+insert into tours values (21,4,5,getdate()-2)
+insert into tours values (34,4,5,getdate()-1)
+insert into tours values (24,3,4,getdate())
+insert into tours values (14,3,4,getdate()-2)
+insert into tours values (24,3,4,getdate()-2)
+insert into tours values (34,2,4,getdate()-1)
+insert into tours values (24,2,4,getdate())
+
+
 
 
 
