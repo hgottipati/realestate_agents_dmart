@@ -310,7 +310,6 @@ insert into tours values (24,2,4,getdate())
 insert into fact_mlsdeals (listDate, [status], mlsId, customerId, agentId, listedPrice, closePrice, dealType, isCurrentIndicator, effectiveDate, expirationDate) 
 values (dateadd (MONTH, -8, GETDATE()), 'listed', 1, 1,2,1500000,null,'sale',1,getdate(),null)
 
-
 insert into fact_mlsdeals (listDate, [status], mlsId, customerId, agentId, listedPrice, closePrice, dealType, isCurrentIndicator, effectiveDate, expirationDate) 
 values (dateadd (YEAR, -1, GETDATE()), 'sold', 10,5,5,1600000,1800000,'purchase',1, dateadd(YEAR, -1, GETDATE()),null)
 
