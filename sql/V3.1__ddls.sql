@@ -65,14 +65,14 @@ IF NOT EXISTS(SELECT * FROM INFORMATION_SCHEMA.TABLES  WHERE TABLE_SCHEMA = 'dbo
 create table fact_mlsdeals
 (
 	mlsDealId int identity (1,1) primary key,
-	listDate datetime not null,
-    status varchar (20),
     mlsId int,
     customerId int,
 	agentId int,
-    listedPrice int,
+	status varchar (20),
+    dealType varchar(20),
+	listDate datetime not null,
+    listPrice int,
 	closePrice int,
-	dealType varchar(20),
 	isCurrentIndicator bit not null,
 	effectiveDate datetime,
 	expirationDate datetime

@@ -305,8 +305,6 @@ insert into tours values (24,2,4,getdate())
 
 
 
-
-
 -- fact_mlsdeals
 
 insert into fact_mlsdeals (listDate, [status], mlsId, customerId, agentId, listedPrice, closePrice, dealType, isCurrentIndicator, effectiveDate, expirationDate) 
@@ -315,3 +313,19 @@ values (dateadd (MONTH, -8, GETDATE()), 'listed', 1, 1,2,1500000,null,'sale',1,g
 
 insert into fact_mlsdeals (listDate, [status], mlsId, customerId, agentId, listedPrice, closePrice, dealType, isCurrentIndicator, effectiveDate, expirationDate) 
 values (dateadd (YEAR, -1, GETDATE()), 'sold', 10,5,5,1600000,1800000,'purchase',1, dateadd(YEAR, -1, GETDATE()),null)
+
+insert into fact_mlsdeals (listDate, [status], mlsId, customerId, agentId, listedPrice, closePrice, dealType, isCurrentIndicator, effectiveDate, expirationDate) 
+values (dateadd (MONTH, -3, GETDATE()), 'listed', 40,9,10,450000,NULL,'sale',0, dateadd(MONTH, -3, GETDATE()),dateadd(MONTH, -2, GETDATE()))
+
+insert into fact_mlsdeals (listDate, [status], mlsId, customerId, agentId, listedPrice, closePrice, dealType, isCurrentIndicator, effectiveDate, expirationDate) 
+values (dateadd (MONTH, -3, GETDATE()), 'pending', 40,9,10,450000,NULL,'sale',0, dateadd(MONTH, -2, GETDATE()),dateadd(MONTH, -1, GETDATE()))
+
+insert into fact_mlsdeals (listDate, [status], mlsId, customerId, agentId, listedPrice, closePrice, dealType, isCurrentIndicator, effectiveDate, expirationDate) 
+values (dateadd (MONTH, -3, GETDATE()), 'sold', 40,9,10,450000,550000,'sale',1, dateadd(MONTH, -1, GETDATE()),null)
+
+
+
+
+
+
+
