@@ -1,33 +1,32 @@
 IF NOT EXISTS(SELECT * FROM INFORMATION_SCHEMA.TABLES  WHERE TABLE_SCHEMA = 'dbo' AND TABLE_NAME = 'dim_agents')
 create table  dim_agents
-(	agentId int IDENTITY(1,1) primary key,
-	agentFirstName varchar(40) not null,
-	agentLastName varchar(40) not null
+(	agent_id int IDENTITY(1,1) primary key,
+	agent_firstName varchar(40) not null,
+	agent_lastName varchar(40) not null
 )
 
 IF NOT EXISTS(SELECT * FROM INFORMATION_SCHEMA.TABLES  WHERE TABLE_SCHEMA = 'dbo' AND TABLE_NAME = 'dim_customers')
 create table dim_customers
 (
-	customerId int IDENTITY(1,1) primary key,
-	assignedAgentId int,
-	customerFirstname varchar(40) not null,
-	customerLastname varchar(40) not null,
+	customer_id int IDENTITY(1,1) primary key,
+	assignedAgent_id int,
+	customer_firstname varchar(40) not null,
+	customer_lastname varchar(40) not null,
 	customerPhone varchar(50)  null,
-	customerEmailId varchar(60) not null,
+	customerEmail_id varchar(60) not null,
 	customerJoinDate datetime default getdate(),
 	isCurrentIndicator bit not null,
 	effectiveDate datetime default  getdate(),
 	expirationDate datetime
 )
 
-
-ALTER TABLE dim_customers ADD FOREIGN KEY (assignedAgentId )		REFERENCES  dim_agents (agentid)
+ALTER TABLE dim_customers ADD FOREIGN KEY (assignedAgent_id )		REFERENCES  dim_agents (agentid)
 
 
 IF NOT EXISTS(SELECT * FROM INFORMATION_SCHEMA.TABLES  WHERE TABLE_SCHEMA = 'dbo' AND TABLE_NAME = 'dim_properties')
 create table dim_properties
 (
-	propertyId int identity (1,1) PRIMARY KEY,
+	property_id int identity (1,1) PRIMARY KEY,
 	[style] varchar (20) not null,
 	address varchar (40) not null,
 	city varchar (30) not null,
@@ -41,7 +40,7 @@ IF NOT EXISTS(SELECT * FROM INFORMATION_SCHEMA.TABLES  WHERE TABLE_SCHEMA = 'dbo
 create table MLS_Master
 (
 	mlsid int identity (1,1) PRIMARY KEY,
-	propertyId int,
+	property_id int,
 	mlsNo int
 )
 ALTER TABLE MLS_Master ADD FOREIGN KEY (propertyID)	REFERENCES  dim_properties (propertyID)
@@ -50,24 +49,24 @@ ALTER TABLE MLS_Master ADD FOREIGN KEY (propertyID)	REFERENCES  dim_properties (
 IF NOT EXISTS(SELECT * FROM INFORMATION_SCHEMA.TABLES  WHERE TABLE_SCHEMA = 'dbo' AND TABLE_NAME = 'tours')
 create table tours
 (	
-	tourId int IDENTITY(1,1) primary key,
-	mlsId int not null,
-	customerId int not null,
-	agentId int not null,
+	tour_id int IDENTITY(1,1) primary key,
+	mls_id int not null,
+	customer_id int not null,
+	agent_id int not null,
 	tourDate datetime not null
 )
 
 ALTER TABLE tours ADD FOREIGN KEY (mlsid)		REFERENCES  MLS_Master (mlsid)
-ALTER TABLE tours ADD FOREIGN KEY (customerId)	REFERENCES  dim_customers (customerId)
-ALTER TABLE tours ADD FOREIGN KEY (agentId)		REFERENCES  dim_agents (agentId)
+ALTER TABLE tours ADD FOREIGN KEY (customer_id)	REFERENCES  dim_customers (customer_id)
+ALTER TABLE tours ADD FOREIGN KEY (agent_id)		REFERENCES  dim_agents (agent_id)
 	
 IF NOT EXISTS(SELECT * FROM INFORMATION_SCHEMA.TABLES  WHERE TABLE_SCHEMA = 'dbo' AND TABLE_NAME = 'fact_mlsdeals')
 create table fact_mlsdeals
 (
-	mlsDealId int identity (1,1) primary key,
-    mlsId int,
-    customerId int,
-	agentId int,
+	mlsDeal_id int identity (1,1) primary key,
+    mls_id int,
+    customer_id int,
+	agent_id int,
 	status varchar (20),
     dealType varchar(20),
 	listDate datetime not null,

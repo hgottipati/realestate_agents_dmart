@@ -1,62 +1,68 @@
 
 -- How many customers they get assigned 
+
+
 SELECT 
-	a.agentFirstName, DATEPART(YEAR,c.customerJoinDate) [Year], COUNT(*) [customers_assigned]
+	a.agent_id, DATEPART(YEAR,c.customer_join_date) [Year], count(*) customers_assigned
 FROM 
 	dim_customers c
 JOIN 
 	dim_agents a ON a.agentid = c.assignedagentid
 WHERE 
-	c.assignedAgentId IS NOT NULL and isCurrentIndicator = 1
+	c.assignedAgent_id IS NOT NULL and c.is_current_indicator = 1
 GROUP BY 
-	a.agentFirstName,DATEPART(YEAR,c.customerJoinDate)
+	a.agent_id,DATEPART(YEAR,c.customer_join_date)
+
 
 -- How many tours they take customers on 
 
 SELECT    
- 	a.agentFirstName, DATEPART(YEAR, t.tourDate) [Year], COUNT(*) [num_of_tours]
+ 	a.agent_id, DATEPART(YEAR, t.tour_date) [Year], count(*) num_of_tours
 FROM 
 	tours t 
 JOIN 
-	dim_agents a ON a.agentId = t.agentId
+	dim_agents a ON a.agent_id = t.agent_id
 GROUP BY 
-	a.agentFirstName, DATEPART(YEAR, t.tourDate)
+	a.agent_id, DATEPART(YEAR, t.tour_date)
 	
 	
 -- How many listing contracts they sign with customers 
+
 SELECT 
-	a.agentFirstName, DATEPART(YEAR,f.listDate) [list_year], count(*) [num_of_listings]
+	a.agent_id, DATEPART(YEAR,f.list_date) list_year, count(*) num_of_listings
 FROM 
 	fact_mlsdeals f
 JOIN 
-	dim_agents a ON a.agentId = f.agentId
+	dim_agents a ON a.agent_id = f.agent_id
 WHERE  
-	dealType = 'sale' and isCurrentIndicator = 1
+	dealType = 'sale' and f.is_current_indicator = 1
 GROUP BY 
-	a.agentFirstName, DATEPART(YEAR,f.listDate)
+	a.agent_id, DATEPART(YEAR,f.list_date)
 
 
 -- How many deals they complete with customers selling homes
+
 SELECT 
-	a.agentFirstName, DATEPART(YEAR,f.effectiveDate) [sale_year], count(*) as [num_sale_deals]
+	a.agent_id, DATEPART(YEAR,f.effective_date) sale_year, count(*) as num_sale_deals
 FROM 
 	fact_mlsdeals f
 JOIN 
-	dim_agents a ON a.agentId = f.agentId
+	dim_agents a ON a.agent_id = f.agent_id
 WHERE  
-	f.[status] = 'sold' and dealType = 'sale'  and isCurrentIndicator = 1
+	f.[status] = 'sold' and deal_type = 'sale'  and f.is_current_indicator = 1
 GROUP BY 
-	a.agentFirstName, DATEPART(YEAR,f.effectiveDate)
-
+	a.agent_id, DATEPART(YEAR,f.effective_date)
 
 
 -- How many deals they complete with customers buying homes
-SELECT f.agentId, DATEPART(YEAR,f.effectiveDate) [purchase_year], count(*) as [num_buy_deals]
+
+SELECT 
+	f.agent_id, DATEPART(YEAR,f.effective_date) purchase_year, count(*) as num_buy_deals
 FROM 
 	fact_mlsdeals f
 JOIN 
-	dim_agents a ON a.agentId = f.agentId
+	dim_agents a ON a.agent_id = f.agent_id
 WHERE  
-	f.[status] = 'sold'  and dealType = 'purchase' and isCurrentIndicator = 1 
+	f.[status] = 'sold'  and deal_type = 'purchase' and f.is_current_indicator = 1 
 GROUP BY 
-	f.agentId, DATEPART(YEAR,f.effectiveDate)
+	f.agent_id, DATEPART(YEAR,f.effective_date)
