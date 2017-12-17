@@ -1,6 +1,0 @@
-drop table if exists [dbo].[agentdeals]
-drop table if exists [dbo].[agents]
-drop table if exists [dbo].[customers]
-drop table if exists [dbo].[properties]
-drop table if exists [dbo].[schema_version]
-drop table if exists [dbo].[tours]
